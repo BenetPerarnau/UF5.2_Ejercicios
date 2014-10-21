@@ -8,16 +8,14 @@ public class Temperature {
 	
 	public Temperature(float grados, char tipo)throws IllegalTemperatureException{
 		if(tipo=='c'){
-			if(grados>50 || grados<-273.15){
+			if(grados>273.15 || grados<-273.15){
 				throw new IllegalTemperatureException("Valor fuera de rango no se aceptan valores inferiores "
-						+ "a los -50º ni superiores a 50º");
+						+ "a los -273.15º ni superiores a 273.15º");
 			}else{
 				this.gradosC=grados;
 			}
 		}else if(tipo=='k'){
-			//System.out.println("Grados => "+grados);
 			if(grados<0 || grados>546.30){
-				//System.out.println("Grados => "+grados);
 				throw new IllegalTemperatureException("Valor fuera de rango no se aceptan valores "
 						+ "inferiores a los 0ºK=-273.15ºC ni superiores a 546.30ºK=273.15ºC");
 			}else{
@@ -40,18 +38,16 @@ public class Temperature {
 			default:
 				System.out.println("Error el tipo es c o k");
 				break;
-		}
-		
+		}		
 		return aux;
 	}
-	
+	//se que el enunciado los pide pero en mi metodo para solucionar el problema no me hace falta utilizarlos
+	//si el programa continuara si que podrian llegar a ser utiles
 	protected float getGradosC() {
 		return gradosC;
 	}
 	
 	protected void setGradosC(float gradosC) {
-		
-		
 		this.gradosC = gradosC;
 	}
 	
