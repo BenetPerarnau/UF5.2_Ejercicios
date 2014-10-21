@@ -6,7 +6,7 @@ import java.util.ArrayList;
 
 public class Test_Banco {
 
-	private static BufferedReader stdin=new BufferedReader(new InputStreamReader(System.in));
+	//private static BufferedReader stdin=new BufferedReader(new InputStreamReader(System.in));
 	private static String dni;
 	private static ArrayList<Cliente> array=Fichero.leerFichero();//cuando inicia se carga automaticamente la BBDD
 	public static void main(String[]args){
@@ -108,23 +108,31 @@ public class Test_Banco {
 				float retirar=Menus.pedir_saldo_retirar();
 				if(abonado.getCunetacorriente()!=null){//por defecto al retirar dinero se extrae de la cuenta corriente
 					
-					if(retirar<=abonado.getCunetacorriente().consultar()){
+					if(retirar<=abonado.getCunetacorriente().consultar()){//si el saldo a retirar es menor al saldo de la cuenta
 						abonado.getCunetacorriente().retirar(retirar);
-					}else if(abonado.getCunetaahorro()!=null){
-						float saldodisponibleccorriente=abonado.getCunetacorriente().consultar();
-						float saldodisponiblecahorro=abonado.getCunetaahorro().consultar();
-						float resto=retirar-saldodisponibleccorriente;
-						abonado.getCunetacorriente().retirar(saldodisponibleccorriente);
-						boolean resultat=abonado.getCunetaahorro().retirar(resto);
-						if(resultat==false){
-							abonado.getCunetacorriente().retirar(resto);
-						}else{
-							//no fa res
+						System.out.println("El saldo se ha extraido correctamente de la cuenta de ahorros");
+					}else if(abonado.getCunetaahorro()!=null){//el saldo a retirar es mayor al saldo de la cuenta
+						float saldodisponibleccorriente=abonado.getCunetacorriente().consultar();//aux saldo corriente
+						float saldodisponiblecahorro=abonado.getCunetaahorro().consultar();// aux saldo ahorro
+						float resto=retirar-saldodisponibleccorriente;//valor que se intentara pagar primero desde una cuenta de ahorro o sino se restara a la cuenta corriente
+						abonado.getCunetacorriente().retirar(saldodisponibleccorriente);//retirar todo lo posible de la cuenta corriente primero(pq cuanto menos saquemos de la de ahorros menos penalización tendremos)
+						if(resto<=saldodisponiblecahorro){//mirar que el resto pueda ser extraido de la cuenta de ahorros
+						abonado.getCunetaahorro().retirar(resto);
+						System.out.println("Se ha extraido de la cuenta Corriente "+saldodisponibleccorriente+"€");
+						System.out.println("Y "+resto+"€ de la cuenta de ahorros");
+						}else{//si no puede ser extraido se sacara de la Corriente dejandola en negativo
+							
+							abonado.getCunetacorriente().retirar(resto);// quedara la cuenta corriente en negativo
+							System.out.println("Se ha extraido de la cuenta Corriente "+retirar+"€");
+							System.out.println("Ten en cuenta que ahora el sado de la cuenta es negativo "+abonado.getCunetacorriente().consultar());
 						}
+					}	
+				}else{//si no se dispone de cuenta corriente o saldo de ella, se extrae de la cuenta de ahorros
+					if(retirar<=abonado.getCunetaahorro().consultar()){
+						abonado.getCunetaahorro().retirar(retirar);
+					}else{
+						System.out.println("No puedes sacar de la cuenta de ahorros mas del saldo disponible.");
 					}
-					
-				}else{//si no se dispone de cuenta corriente o saldo en ella se extrae de la cuenta de ahorros
-					abonado.getCunetaahorro().retirar(retirar);
 				}
 				}
 				break;

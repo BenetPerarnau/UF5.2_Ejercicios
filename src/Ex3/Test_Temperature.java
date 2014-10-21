@@ -21,7 +21,6 @@ public class Test_Temperature {
 			} catch (IOException e) {
 				e.printStackTrace();
 			}
-			}while(op>3 || op<1);
 			switch(op){
 			case 1:
 				float grados=0;
@@ -33,7 +32,7 @@ public class Test_Temperature {
 				}catch(NumberFormatException e){
 					System.out.println(e+" Se espera un valor numerico del 1 al 3");
 				} catch (IllegalTemperatureException e) {
-					e.getMessage();
+					System.out.println(""+e.getMessage());
 				} catch (IOException e) {
 					e.printStackTrace();
 				}				
@@ -60,11 +59,8 @@ public class Test_Temperature {
 					//nunca entrara pq esta controlado en el do while valores del 1 al 3
 					break;
 			}
-			
-			
-			
+	
 			//Temperature a=new Temperature(10,'k');
-			
-		
+			}while(op!=3);			
 	}
 }

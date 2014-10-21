@@ -5,7 +5,7 @@ import java.io.IOException;
 import java.io.InputStreamReader;
 
 public class Menus {
-	private static BufferedReader stdin=new BufferedReader(new InputStreamReader(System.in));
+	
 	public static byte menuprincipal(){
 		byte op=0;
 		do{
@@ -17,6 +17,7 @@ public class Menus {
 		System.out.print("OP ==> ");
 		op=0;
 		try {
+			BufferedReader stdin=new BufferedReader(new InputStreamReader(System.in));
 			 op=Byte.parseByte(stdin.readLine());
 		} catch (NumberFormatException e) {
 			System.out.println("Se espera un valor numerico "+e);
@@ -33,6 +34,7 @@ public class Menus {
 		try{
 			do{
 			System.out.print("DNI => ");
+			BufferedReader stdin=new BufferedReader(new InputStreamReader(System.in));
 			dni=stdin.readLine();
 			correcto=Operaciones.isdni(dni);
 			}while(correcto==false);
@@ -49,6 +51,7 @@ public class Menus {
 			System.out.println("1. Abrir Cuenta Corriente");
 			System.out.println("2. Abrir Cuenta de Ahorro");
 			System.out.print("OP => ");
+			BufferedReader stdin=new BufferedReader(new InputStreamReader(System.in));
 			op=Byte.parseByte(stdin.readLine());
 		}catch(Exception e){
 			System.out.println("Se espera valor numerico "+e);
@@ -60,6 +63,7 @@ public class Menus {
 		float inicial=0;
 		try{
 		System.out.print("Saldo inicial => ");
+		BufferedReader stdin=new BufferedReader(new InputStreamReader(System.in));
 		inicial=Float.parseFloat(stdin.readLine());
 		
 		}catch(Exception e){
@@ -77,6 +81,7 @@ public class Menus {
 		do{
 			try{
 			System.out.print("Saldo a retirar => ");
+			BufferedReader stdin=new BufferedReader(new InputStreamReader(System.in));
 			retirar=Float.parseFloat(stdin.readLine());
 			if(retirar<1){
 				System.out.println("El saldo a retirar debe ser mayor a 0€");
