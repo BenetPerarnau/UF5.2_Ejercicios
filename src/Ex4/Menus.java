@@ -92,4 +92,40 @@ public class Menus {
 		}while(retirar<1);
 		return retirar;
 	}
+	public static byte pedir_q_cuenta(){
+		byte aux=0;
+			do{
+			try{
+				System.out.println("1. Ingreso en Cuenta Corriente");
+				System.out.println("2. Ingreso en Cuenta Ahorro");
+				System.out.print("OP => ");
+				BufferedReader stdin=new BufferedReader(new InputStreamReader(System.in));
+				aux=Byte.parseByte(stdin.readLine());
+			}catch(NumberFormatException e){
+				System.out.println(e+"Valores numericos enteros");
+			} catch (IOException e) {
+				e.printStackTrace();
+			}
+			}while(aux!=1 && aux!=2);
+		return aux;
+	}
+	public static float pedir_cantidad_ingreso(){
+		float cantidad=0;
+		do{
+		try{
+		BufferedReader stdin=new BufferedReader(new InputStreamReader(System.in));
+		System.out.print("Importe Ingreso => ");
+		cantidad=Float.parseFloat(stdin.readLine());
+		}catch(NumberFormatException e){
+			System.out.println(e+"Valores numericos enteros o decimales");
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
+		}while(cantidad<=0);
+		return cantidad;
+	}
+	public static void ingreso_exito(float ingreso){
+		System.out.println("Exito en el ingreso");
+		System.out.println("Importe ingreso: "+ingreso+"€");
+	}
 }

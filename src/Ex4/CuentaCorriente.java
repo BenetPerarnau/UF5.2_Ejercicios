@@ -9,16 +9,13 @@ public class CuentaCorriente implements OperacionesCuentas {
 		this.saldo=saldo;
 	}
 	
-	public boolean ingresar(float efectivo) {
-		// TODO Auto-generated method stub
-		return false;
+	public void ingresar(float efectivo) {
+		this.saldo+=efectivo;
+		
 	}
 
-	public boolean retirar(float cantidad) {
-		
+	public void retirar(float cantidad) {	
 		saldo-=cantidad;
-		
-		return false;
 	}
 
 	public float consultar() {

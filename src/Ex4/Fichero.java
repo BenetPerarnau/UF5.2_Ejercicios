@@ -18,12 +18,9 @@ public class Fichero {
 		String linea="";
 	
 		
-		while((linea=br.readLine())!=null){
-			
+		while((linea=br.readLine())!=null){			
 				String [] part=linea.split(";");
 				array.add(new Cliente(part[0],part[1],part[2],part[3]));
-				//System.out.println("Dni => "+part[0]);
-			
 		}
 		
 		}catch(Exception e){

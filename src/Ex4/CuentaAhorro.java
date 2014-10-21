@@ -15,22 +15,14 @@ public class CuentaAhorro implements OperacionesCuentas {
 		return this.penalizacion;
 	}
 	
-	public boolean ingresar(float efectivo) {
-		// TODO Auto-generated method stub
-		return false;
+	public void ingresar(float efectivo) {
+		this.saldo+=efectivo;
+		
 	}
 
 	
-	public boolean retirar(float cantidad) {
-		boolean aux=false;
-		
-		if(saldo<cantidad){
-			aux=false;
-		}else{
-			saldo-=cantidad;
-		}
-		
-		return aux;
+	public void retirar(float cantidad) {
+			saldo-=cantidad;		
 	}
 
 	
