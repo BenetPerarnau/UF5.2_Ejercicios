@@ -1,4 +1,4 @@
-package Ex4;
+package Ex4_R;
 
 import java.io.BufferedReader;
 import java.io.IOException;
@@ -59,7 +59,7 @@ public class Menus {
 		}while(op<1 || op>2);
 		return op;
 	}
-	public static float pedirSalodInicialCuenta() throws SaldoInicialInsuficienteException{
+	public static float pedirSalodInicialCuenta(){
 		float inicial=0;
 		try{
 		System.out.print("Saldo inicial => ");
@@ -69,9 +69,7 @@ public class Menus {
 		}catch(Exception e){
 			System.out.println("Se espera un valor numerico "+e);
 		}
-		if(inicial<50){
-			throw new SaldoInicialInsuficienteException("El saldo minimo para una nueva cuenta son 50€");
-		}
+	
 		
 		return inicial;
 	}

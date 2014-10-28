@@ -7,7 +7,16 @@ import java.io.InputStreamReader;
 public class Test_Temperature {
 
 	public static void main(String[] args){
-		
+			float y=-1;
+			Temperature b=new Temperature();
+			try {
+				System.out.println(b.getGradosC(y));
+			} catch (IllegalTemperatureException e1) {
+				// TODO Auto-generated catch block
+				e1.printStackTrace();
+			}
+			
+			
 			byte op=0;
 			do{//entrara como minimo una vez y repite hasta dar con la op 3
 			System.out.println("1. Pasar de grados Celsius a Kelvin");

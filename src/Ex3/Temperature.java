@@ -4,8 +4,11 @@ public class Temperature {
 
 	private float gradosC;
 	private float gradosK;
+	private final float varemo=(float)273.15;
 	
-	
+	public Temperature(){
+		
+	}
 	public Temperature(float grados, char tipo)throws IllegalTemperatureException{
 		if(tipo=='c'){
 			if(grados>273.15 || grados<-273.15){
@@ -43,21 +46,33 @@ public class Temperature {
 	}
 	//se que el enunciado los pide pero en mi metodo para solucionar el problema no me hace falta utilizarlos
 	//si el programa continuara si que podrian llegar a ser utiles
-	protected float getGradosC() {
-		return gradosC;
-	}
 	
-	protected void setGradosC(float gradosC) {
-		this.gradosC = gradosC;
+	
+	
+	protected float getGradosC(float gradosK) throws IllegalTemperatureException{
+		
+		if(gradosK<0){
+			throw new IllegalTemperatureException("Los grados k no pueden ser inferiores a 0");
+		}else{
+			return gradosK-varemo;
+		}
+		
 	}
 	
 	protected float getGradosK() {
 		return gradosK;
 	}
 	
+	
+	protected void setGradosC(float gradosC) {
+		this.gradosC = gradosC;
+	}
 	protected void setGradosK(float gradosK) {
 		this.gradosK = gradosK;
 	}
+	
+	
+
 	
 	
 	
