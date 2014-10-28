@@ -14,7 +14,7 @@ public class CuentaCorriente implements OperacionesCuentas {
 		}
 		
 	}
-	public CuentaCorriente(float saldo,char f) throws SaldoInicialInsuficienteException{
+	public CuentaCorriente(float saldo,char f){
 		//este constructor es para leer el fichero pq? pq si dejamos a 0 o negativo un cliente a la que vuelva a leer el fichero petaria usando el otro constructor
 			this.saldo=saldo;
 		

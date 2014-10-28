@@ -28,7 +28,8 @@ public class Test_Banco {
 			op=Menus.menuprincipal();
 			if(op!=5){
 			dni=Menus.pedirDni();
-			abonado=Operaciones.isCliente(array, dni);
+			//abonado=Operaciones.isCliente(array, dni);
+			abonado=array.get(dni);
 			}
 			switch(op){
 			case 1://abrir cuenta bancaria		
@@ -130,6 +131,8 @@ public class Test_Banco {
 						//perfecto se ha podido extraer todo del saldo de la cuenta de ahorro
 							System.out.println("Se ha extraido de la cuenta Ahorro"+ retirar+" € + "+abonado.getCunetaahorro().get_penalizacion()*100+"% Toal => "+retirar+retirar*abonado.getCunetaahorro().get_penalizacion());
 							System.out.println("El saldo actual de la cuenta ahorro es: "+abonado.getCunetaahorro().consultarSaldo()+"€");
+						
+							Fichero.sobreescribirFichero(array);
 						}
 					}else{//si no puede ser extraido se sacara de la Corriente dejandola en negativo
 						
@@ -139,19 +142,21 @@ public class Test_Banco {
 						
 						Fichero.sobreescribirFichero(array);
 					}	
-				}else{//si no se dispone de cuenta corriente o saldo de ella, se extrae de la cuenta de ahorros
+				}else{//si no se dispone de cuenta corriente , se extrae de la cuenta de ahorros
 					
 					if(abonado.getCunetaahorro().retirar(retirar)){
 						
-						System.out.println("Se ha extraido de la cuenta Ahorro "+retirar+"€");
+						//perfecto se ha podido extraer todo del saldo de la cuenta de ahorro
+						System.out.println("Se ha extraido de la cuenta Ahorro"+ retirar+" € + "+abonado.getCunetaahorro().get_penalizacion()*100+"% Toal => "+retirar+retirar*abonado.getCunetaahorro().get_penalizacion());
 						System.out.println("El saldo actual de la cuenta ahorro es: "+abonado.getCunetaahorro().consultarSaldo()+"€");
+						
 						Fichero.sobreescribirFichero(array);
 						
 					}else{
 						
 						System.out.println("No puedes sacar de la cuenta de ahorros mas del saldo disponible.");
 						System.out.println("El saldo actual de la cuenta ahorro es: "+abonado.getCunetaahorro().consultarSaldo()+"€");
-						System.out.println("Estas intentando sacar "+retirar+"€ + la penalizacion "+retirar*abonado.getCunetaahorro().get_penalizacion()+"€ suman "+retirar+retirar*abonado.getCunetaahorro().get_penalizacion()+"€");
+						System.out.println("Estas intentando sacar "+retirar+"€ + la penalizacion "+retirar*abonado.getCunetaahorro().get_penalizacion()+"€ suman "+(retirar+retirar*abonado.getCunetaahorro().get_penalizacion())+"€");
 					}
 				}
 				}

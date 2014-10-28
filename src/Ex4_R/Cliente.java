@@ -17,9 +17,6 @@ public class Cliente {
 			} catch (NumberFormatException e) {
 				// TODO Auto-generated catch block
 				e.printStackTrace();
-			} catch (SaldoInicialInsuficienteException ex) {
-				// TODO Auto-generated catch block
-				ex.printStackTrace();
 			}
 		}else{
 			//this.cunetacorriente=null;
@@ -28,9 +25,6 @@ public class Cliente {
 			try {
 				this.cunetaahorro=new CuentaAhorro(Float.parseFloat(cahorro),Float.parseFloat(penalizacion),'f');
 			} catch (NumberFormatException e) {
-				// TODO Auto-generated catch block
-				e.printStackTrace();
-			} catch (SaldoInicialInsuficienteException e) {
 				// TODO Auto-generated catch block
 				e.printStackTrace();
 			}
